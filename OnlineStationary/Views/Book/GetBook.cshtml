@@ -1,0 +1,39 @@
+﻿@model OnlineStationary.Response.BookResponseModel
+
+@* @{
+ *@    ViewBag.Title = "Book Details";
+}
+
+<h2>@Model.Tittle</h2>
+
+<div class="card">
+    <div class="card-body">
+        <!-- Display Book Image -->
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <img src="@Model.Image" alt="@Model.Tittle" class="img-fluid rounded" style="max-width: 300px; height: auto;" />
+        }
+        else
+        {
+            <p><em>No image available for this book.</em></p>
+        }
+
+        <!-- Display Book Details -->
+        <p><strong>Title:</strong> @Model.Tittle</p>
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Category:</strong> @Model.Category</p>
+        <p><strong>Page Number:</strong> @Model.PageNumber</p>
+        <p><strong>Price:</strong> $@Model.Price</p>
+    </div>
+
+    <div class="card-footer">
+        <!-- Action Buttons -->
+        <a asp-action="UpdateBook" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="DeleteBook" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+        <a asp-action="GetBook" asp-controller="Book"> View </a>
+    </div>
+</div>
+
+<!-- Back to Books List Button -->
+<a asp-action="GetAllBooks" class="btn btn-secondary mt-3">Back to Books List</a>
+

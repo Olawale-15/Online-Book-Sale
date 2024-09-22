@@ -1,0 +1,41 @@
+﻿@* @model OnlineStationary.Response.AuthorResponseModel *@
+
+@{
+    ViewData["Title"] = "Author Details";
+}
+
+<h2>Author Details</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Username</th>
+        <td>@Model.Username</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Gender</th>
+        <td>@Model.Gender</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>@Model.Address</td>
+    </tr>
+    <tr>
+        <th>Phone Number</th>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+    @if (Model.Wallet != null)
+    {
+        <tr>
+            <th>Wallet Balance</th>
+            <td>@Model.Wallet.Balance</td>
+        </tr>
+    }
+</table>
+
+<div>
+    <a href="@Url.Action("GetAllAuthor", "Author")" class="btn btn-primary">Back</a>
+</div>

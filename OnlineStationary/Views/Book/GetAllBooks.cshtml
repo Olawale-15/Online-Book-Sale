@@ -1,0 +1,62 @@
+﻿@model IEnumerable<OnlineStationary.Response.BookResponseModel>
+
+
+@{
+    ViewData["Title"] = "Available Books";
+}
+
+<h2>Available Books</h2>
+
+<div id="booksContainer" class="row">
+    @foreach (var book in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="@book.Image" alt="Book image" />
+                <div class="card-body">
+                    <h5 class="card-title">@book.Name</h5>
+                    <p class="card-text"><strong>Price:</strong> @book.Price</p>
+                    <p class="card-text"><strong>Quantity:</strong> @book.Quantity</p>
+                    <p class="card-text"><strong>Page Number:</strong> @book.PageNumber</p>
+                    <p class="card-text"><strong>Description:</strong> @book.Description</p>
+                    <p class="card-text"><strong>Title:</strong> @book.Tittle</p>
+                </div>
+            </div>
+        </div>
+       
+    }
+</div>
+
+
+<!-- Success/Error Message Display -->
+<div id="orderMessage" class="mt-4"></div>
+
+@* @section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Handle Order Button Click
+            $('.order-btn').click(function () {
+                var bookId = $(this).data('book-id');
+                var quantity = 1; // Set default quantity for ordering (can customize this later)
+
+                $.ajax({
+                    url: '@Url.Action("MakeOrder", "Order")',
+                    type: 'POST',
+                    data: JSON.stringify({ BookId: bookId, Quantity: quantity }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {
+                        if (response.isSucessful) {
+                            $('#orderMessage').html('<div class="alert alert-success">' + response.message + '</div>');
+                        } else {
+                            $('#orderMessage').html('<div class="alert alert-danger">' + response.message + '</div>');
+                        }
+                    },
+                    error: function () {
+                        $('#orderMessage').html('<div class="alert alert-danger">An error occurred while processing your order.</div>');
+                    }
+                });
+            });
+        });
+    </script>
+}
+ *@

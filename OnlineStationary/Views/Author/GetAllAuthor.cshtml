@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OnlineStationary.Response.AuthorResponseModel>
+
+@{
+    ViewData["Title"] = "All Authors";
+}
+
+<h2>All Authors</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.Username</td>
+                    <td>@author.Email</td>
+                    <td>@author.Gender</td>
+                    <td>@author.Address</td>
+                    <td>@author.PhoneNumber</td>
+                    <td>
+                        <a href="@Url.Action("GetAuthor", "Author", new { id = author.Id })" class="btn btn-info">View</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">No authors available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
